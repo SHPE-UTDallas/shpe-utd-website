@@ -118,9 +118,15 @@ include "base.php";
 									<header class="major">
 										<h2>Want to become an officer?</h2>
 									</header>
+									
 									<p>Join the Freshmen RoundTable to make an impact alongside an officer mentor.</p>
 									<ul class="actions">
-										<li><a href="mailto:Emily.Lomas-Martinez@utdallas.edu?Subject=I%20would%20like%20to%20join%20the%20Freshmen%20RoundTable" class="button" target="_blank">Contact Emily Lomas</a></li>
+										<?php
+											$result = mysqli_query($dbcon, "SELECT * FROM `officers` WHERE `Position` = 'President';");
+												$presidentInfo= $result->fetch_row();
+
+											?>
+										<li><a href="mailto:<?php echo $presidentInfo[3];?>?Subject=I%20would%20like%20to%20join%20the%20Freshmen%20RoundTable" class="button" target="_blank">Contact <?php echo $presidentInfo[2];?></a></li>
 									</ul>
 								</div>
 							</section>
