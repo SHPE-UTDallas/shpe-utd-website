@@ -1,5 +1,6 @@
 <?php
 include "base.php";
+$membership_form_url = "https://forms.gle/ggRy8X7u9mBtk1o17";
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -73,9 +74,9 @@ include "base.php";
 							<div class="inner">
 								<h3>How to Join</h3>
 									<ol>
-										<li>Fill out our membership form</li>
+										<li>Fill out our membership form by clicking <a href="<?php echo $membership_form_url?>" target="_blank">here</li>
 										<li>Pay the local dues below</li>
-										<li>Join SHPE (UTD) on <a href="https://orgsync.com/16151/chapter" target="_blank">Orgsync</a></li>
+										<li>Join SHPE (UTD) on <a href="https://utdallas.presence.io/organization/society-of-hispanic-professional-engineers" target="_blank">Presence</a></li>
 										<li>Register with SHPE (national) on <a href="http://www.shpe.org/join-shpe" target="_blank">SHPEConnect</a></li>
 										<li>Pay the national dues below</li>
 									</ol>
@@ -96,20 +97,28 @@ include "base.php";
 										<tbody>
 											<tr>
 												<td>Local (UTD only)</td>
-												<td>$10 per Semester</td>
+												<td>$6 per Semester</td>
 												<td>
 													<ul>
 														<li>
+															<?php
+																	$result = mysqli_query($dbcon, "SELECT * FROM `officers` WHERE `Position` = 'Treasurer';");
+																	$treasurerInfo= $result->fetch_row();
+
+															?>
 															<strong>Cash</strong>
 															<br>
-															Contact Jaquelin Rojas (Treasurer)
+															Contact <?php echo $treasurerInfo[2];?> (Treasurer)
 															<br>
-																E-Mail: <a href="mailto:jxr175030@utdallas.edu?Subject=I%20Would%20Like%20to%20Pay%20my%20Membership%20Dues" target="_blank">jxr175030@utdallas.edu</a>
+																E-Mail: <a href="mailto:<?php echo $treasurerInfo[3]?>?Subject=I%20Would%20Like%20to%20Pay%20my%20Membership%20Dues" target="_blank"><?php echo $treasurerInfo[3]?></a>
 														</li>
 														<li>
 															<strong>Online</strong>
+															<br/>
+															Please click <a href="https://forms.gle/ggRy8X7u9mBtk1o17" target="_blank">here</a> to fill out our membership form first
 															<br>
 															Venmo: pay at <u>@SHPE-UTD</u>
+															<br>
 														</li>
 													</ul>
 												</td>
